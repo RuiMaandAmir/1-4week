@@ -1,0 +1,915 @@
+第9周（7月7日-13日，21小时）
+目标：学习强化学习（RL）基础，用Q-Learning优化推荐系统。  
+任务1：强化学习基础（7月7日-8日，6小时）
+目标：理解强化学习原理，掌握马尔可夫决策过程（MDP）。
+资源：  
+Coursera“Reinforcement Learning Specialization”：Course 1 Week 1（RL基础，2小时）。  
+内容概述：强化学习定义、MDP、奖励函数。
+
+B站“强化学习入门”：第1集（RL基础，1小时）。  
+内容概述：Agent、环境、奖励。
+
+学习内容：  
+强化学习（RL）：  
+定义：Agent通过与环境交互学习策略，最大化累积奖励。  
+
+核心概念：Agent、环境、状态（S）、动作（A）、奖励（R）。
+
+马尔可夫决策过程（MDP）：  
+状态转移：P(s'|s, a)（给定状态s和动作a，转移到s'的概率）。  
+
+奖励函数：R(s, a)。  
+
+策略：π(a|s)（状态s下选择动作a的概率）。
+
+价值函数：  
+状态价值：V(s)（在状态s下的长期累积奖励）。  
+
+动作价值：Q(s, a)（在状态s下执行动作a的长期奖励）。
+
+练习：  
+手动计算状态价值：  
+环境：简单网格（3x3），目标：(3,3)，奖励：到达目标+10，其他-1。  
+
+状态：(1,1)，动作：上、下、左、右。  
+
+策略：随机（每个动作概率0.25）。  
+
+折扣因子：γ=0.9。  
+
+计算V(1,1)（简化）：假设一步后状态价值为0，V(1,1) = -1 + 0.9 * 0 = -1。
+
+代码：  
+python
+
+# 简单MDP示例  
+states = [(1,1), (1,2), (2,1), (2,2), (3,3)]  
+rewards = {(3,3): 10, (1,1): -1, (1,2): -1, (2,1): -1, (2,2): -1}  
+gamma = 0.9  
+V = {s: 0 for s in states}  # 初始化状态价值  
+# 一次迭代  
+for s in states:  
+    if s == (3,3):  
+        V[s] = rewards[s]  
+    else:  
+        V[s] = rewards[s] + gamma * 0  # 简化  
+print(f"State value at (1,1): {V[(1,1)]}")  # -1  
+
+Cursor使用：  
+创建rl_mdp.py。  
+
+输入“用Python实现简单MDP状态价值计算”，按Ctrl+K补全：  
+python
+
+states = [(1,1), (1,2), (2,1), (2,2), (3,3)]  
+rewards = {(3,3): 10, (1,1): -1, (1,2): -1, (2,1): -1, (2,2): -1}  
+V = {s: 0 for s in states}  
+
+调试：Ctrl+Shift+D，验证计算结果。
+
+总结：掌握了强化学习基础，理解了MDP和价值函数。
+注意事项：  
+确保理解状态转移概率（后续会用到）。  
+
+复习概率统计知识（第1周内容）。
+进阶任务：阅读Coursera课程笔记，了解Bellman方程。
+时间：周一-周二，3小时/天。
+
+任务2：Q-Learning算法（7月9日-10日，6小时）
+目标：掌握Q-Learning算法，用Gym实现简单RL任务。
+资源：  
+Coursera“Reinforcement Learning Specialization”：Course 2 Week 1（Q-Learning，2小时）。  
+内容概述：Q-Learning原理、更新规则。
+
+B站“强化学习入门”：第2集（Q-Learning，1小时）。  
+内容概述：Gym环境使用。
+
+学习内容：  
+Q-Learning：  
+无模型RL：无需知道状态转移概率。  
+
+更新规则：Q(s, a) = Q(s, a) + α[R + γ * max(Q(s', a')) - Q(s, a)]。  
+α：学习率，γ：折扣因子。
+
+Gym环境：  
+安装：pip install gym。  
+
+示例环境：CartPole-v1（平衡杆任务）。  
+
+目标：通过动作（左/右）保持杆平衡，最大化奖励。
+
+练习：  
+用Q-Learning训练CartPole-v1：  
+状态：离散化（简化）。  
+
+动作：0（左）、1（右）。  
+
+训练：1000次迭代，学习率α=0.1，γ=0.99。
+
+代码：  
+python
+
+import gym  
+import numpy as np  
+env = gym.make("CartPole-v1")  
+# 离散化状态（简化）  
+n_states = 40  
+n_actions = env.action_space.n  
+Q = np.zeros((n_states, n_actions))  
+alpha, gamma = 0.1, 0.99  
+# 训练  
+for episode in range(1000):  
+    state = env.reset()[0]  
+    state = int(state[2] * 10) % n_states  # 简化状态  
+    done = False  
+    while not done:  
+        action = np.argmax(Q[state]) if np.random.rand() > 0.1 else env.action_space.sample()  
+        next_state, reward, done, _, _ = env.step(action)  
+        next_state = int(next_state[2] * 10) % n_states  
+        Q[state, action] += alpha * (reward + gamma * np.max(Q[next_state]) - Q[state, action])  
+        state = next_state  
+print("Q-Table:", Q[:5])  
+
+Cursor使用：  
+创建q_learning.py。  
+
+输入“用Gym实现Q-Learning训练CartPole”，按Ctrl+K补全：  
+python
+
+import gym  
+import numpy as np  
+env = gym.make("CartPole-v1")  
+Q = np.zeros((40, env.action_space.n))  
+
+调试：Ctrl+Shift+D，验证Q表更新。
+
+总结：掌握了Q-Learning算法，用Gym实现了简单RL任务。
+注意事项：  
+离散化状态需谨慎（可能丢失信息）。  
+
+检查奖励是否提升（目标：>100）。
+进阶任务：用epsilon-greedy策略改进探索（ε从0.9逐渐减小）。
+时间：周三-周四，3小时/天。
+
+任务3：强化学习推荐系统（7月11日-12日，6小时）
+目标：用Q-Learning优化推荐系统（电影推荐）。
+资源：  
+Kaggle“MovieLens”数据集。  
+
+B站“强化学习入门”：第3集（RL应用，1小时）。
+
+学习内容：  
+RL推荐系统：  
+状态：用户当前观看历史。  
+
+动作：推荐电影。  
+
+奖励：用户评分（1-5）。
+
+数据处理：  
+用MovieLens数据，提取用户评分。  
+
+简化：10个用户，50部电影。
+
+练习：  
+用Q-Learning实现电影推荐：  
+状态：用户ID（离散）。  
+
+动作：电影ID。  
+
+奖励：评分（归一化到0-1）。  
+
+训练：500次迭代。
+
+代码：  
+python
+
+import pandas as pd  
+import numpy as np  
+# 加载数据（简化）  
+ratings = pd.read_csv("ratings.csv")[:1000]  
+n_users, n_movies = 10, 50  
+Q = np.zeros((n_users, n_movies))  
+alpha, gamma = 0.1, 0.99  
+# 训练  
+for _, row in ratings.iterrows():  
+    user, movie, rating = int(row["userId"]) % n_users, int(row["movieId"]) % n_movies, row["rating"]/5  
+    Q[user, movie] += alpha * (rating + gamma * np.max(Q[user]) - Q[user, movie])  
+# 测试推荐  
+user = 0  
+recommended_movie = np.argmax(Q[user])  
+print(f"Recommended movie for user {user}: {recommended_movie}")  
+
+Cursor使用：  
+创建rl_recommend.py。  
+
+输入“用Q-Learning实现电影推荐”，按Ctrl+K补全：  
+python
+
+import pandas as pd  
+import numpy as np  
+ratings = pd.read_csv("ratings.csv")  
+Q = np.zeros((10, 50))  
+
+调试：Ctrl+Shift+D，验证推荐结果。
+
+总结：用Q-Learning优化了推荐系统，提升了推荐准确性。
+注意事项：  
+确保数据清洗（去除无效评分）。  
+
+检查推荐多样性（避免重复推荐）。
+进阶任务：用深度Q网络（DQN）改进推荐（需PyTorch）。
+时间：周五-周六，3小时/天。
+
+任务4：复习与总结（7月13日，3小时）
+目标：巩固第9周内容，规划第10周学习。
+内容：  
+复习：  
+RL基础：MDP、价值函数。  
+
+Q-Learning：算法、Gym实践。  
+
+推荐系统：用RL优化电影推荐。
+
+总结：  
+难点：状态离散化（信息损失）。  
+
+收获：掌握了Q-Learning，优化了推荐系统。
+
+规划第10周：  
+学习模型部署（AWS）。  
+
+准备创业项目MVP开发。
+
+练习：  
+测试推荐系统：  
+输入用户ID，验证推荐电影是否合理（评分>4）。
+
+总结：巩固了强化学习基础，为创业项目推荐功能优化做好准备。
+时间：周日，3小时。  
+第10周（7月14日-20日，21小时）
+目标：学习模型部署（AWS），部署对话机器人（Rasa）。  
+任务1：AWS基础（7月14日-15日，6小时）
+目标：掌握AWS基本服务（EC2、S3），搭建云端环境。
+资源：  
+AWS文档（aws.amazon.com，免费）。  
+内容概述：EC2、S3入门（2小时）。
+
+B站“AWS入门”（搜索“AWS EC2”）。
+
+学习内容：  
+AWS账户：  
+注册免费账户（12个月免费层）。  
+
+设置IAM用户，获取访问密钥。
+
+EC2：  
+启动实例：Ubuntu 20.04。  
+
+SSH连接：ssh -i key.pem ubuntu@<public-ip>。
+
+S3：  
+创建存储桶（bucket）。  
+
+上传文件：模型文件、知识库。
+
+练习：  
+启动EC2实例：  
+选择t2.micro（免费层）。  
+
+下载密钥对（key.pem）。
+
+创建S3存储桶：  
+上传knowledge_base.txt（第8周知识库文件）。
+
+代码（终端命令）：  
+bash
+
+# SSH连接EC2  
+ssh -i key.pem ubuntu@<public-ip>  
+# 安装Python  
+sudo apt update  
+sudo apt install python3-pip  
+# 上传文件到S3（需awscli）  
+pip install awscli  
+aws s3 cp knowledge_base.txt s3://my-bucket/  
+
+Cursor使用：  
+创建aws_setup.sh。  
+
+输入“生成AWS EC2和S3配置脚本”，按Ctrl+K补全：  
+bash
+
+ssh -i key.pem ubuntu@<public-ip>  
+sudo apt update  
+
+调试：Ctrl+Shift+D，验证命令格式。
+
+总结：掌握了AWS基础，搭建了云端环境。
+注意事项：  
+确保安全组开放端口（SSH: 22）。  
+
+保存密钥对（key.pem不可丢失）。
+进阶任务：阅读AWS文档，了解EBS（存储卷）。
+时间：周一-周二，3小时/天。
+
+任务2：部署Rasa到AWS（7月16日-17日，6小时）
+目标：将Rasa对话机器人部署到AWS EC2。
+资源：  
+Rasa文档（rasa.com，免费）。  
+内容概述：部署Rasa（2小时）。
+
+学习内容：  
+环境配置：  
+在EC2上安装Rasa：pip install rasa。  
+
+上传Rasa项目文件（第6-8周代码）。
+
+运行Rasa：  
+Rasa服务器：rasa run --enable-api。  
+
+动作服务器：rasa run actions。
+
+访问测试：  
+开放端口：5005（Rasa默认）。  
+
+用curl测试：curl -X POST http://<public-ip>:5005/webhooks/rest/webhook -d '{"message": "你好"}'。
+
+练习：  
+部署Rasa：  
+上传项目文件到EC2。  
+
+启动Rasa服务器和动作服务器。
+
+测试：  
+输入“你好”，验证回复（目标：正常响应）。
+
+代码（终端命令）：  
+bash
+
+# 安装Rasa  
+pip install rasa  
+# 上传项目文件  
+scp -i key.pem -r rasa_project ubuntu@<public-ip>:~/  
+# 启动Rasa  
+rasa run --enable-api &  
+rasa run actions &  
+
+Cursor使用：  
+创建deploy_rasa.sh。  
+
+输入“生成Rasa部署脚本”，按Ctrl+K补全：  
+bash
+
+pip install rasa  
+rasa run --enable-api &  
+
+调试：Ctrl+Shift+D，验证脚本执行。
+
+总结：成功将Rasa部署到AWS，支持云端对话。
+注意事项：  
+确保安全组开放5005端口。  
+
+检查动作服务器是否正常运行（BERT、T5依赖）。
+进阶任务：用nohup实现后台运行（nohup rasa run &）。
+时间：周三-周四，3小时/天。
+
+任务3：构建API（Flask）（7月18日-19日，6小时）
+目标：用Flask为Rasa构建API，支持外部访问。
+资源：  
+Flask文档（flask.palletsprojects.com，免费）。  
+内容概述：Flask入门（2小时）。
+
+学习内容：  
+Flask基础：  
+安装：pip install flask。  
+
+创建简单API：接收用户输入，调用Rasa，返回回复。
+
+集成Rasa：  
+用requests调用Rasa API。  
+
+端点：/chat，接收POST请求。
+
+练习：  
+创建Flask API：  
+端点：/chat，输入：{"message": "你好"}，输出：Rasa回复。
+
+测试：  
+用curl测试：curl -X POST http://<public-ip>:5000/chat -d '{"message": "你好"}'。
+
+代码：  
+python
+
+from flask import Flask, request, jsonify  
+import requests  
+app = Flask(__name__)  
+@app.route("/chat", methods=["POST"])  
+def chat():  
+    message = request.json["message"]  
+    rasa_response = requests.post("http://localhost:5005/webhooks/rest/webhook", json={"message": message})  
+    return jsonify(rasa_response.json())  
+if __name__ == "__main__":  
+    app.run(host="0.0.0.0", port=5000)  
+
+Cursor使用：  
+创建flask_api.py。  
+
+输入“用Flask创建Rasa API”，按Ctrl+K补全：  
+python
+
+from flask import Flask, request, jsonify  
+app = Flask(__name__)  
+@app.route("/chat", methods=["POST"])  
+def chat():  
+    message = request.json["message"]  
+    return jsonify({"response": message})  
+
+手动补充Rasa调用代码，调试：Ctrl+Shift+D，验证API响应。
+
+总结：用Flask为Rasa构建了API，支持外部访问。
+注意事项：  
+确保Flask端口（5000）在安全组中开放。  
+
+检查Rasa服务器是否运行。
+进阶任务：添加API认证（Basic Auth）。
+时间：周五-周六，3小时/天。
+
+任务4：复习与总结（7月20日，3小时）
+目标：巩固第10周内容，规划第11周学习。
+内容：  
+复习：  
+AWS：EC2、S3配置。  
+
+Rasa部署：云端运行、API访问。  
+
+Flask：构建API。
+
+总结：  
+难点：端口配置（安全组设置）。  
+
+收获：对话机器人成功部署到AWS，支持外部访问。
+
+规划第11周：  
+开发创业项目MVP（AI学习助手+客服机器人）。
+
+练习：  
+测试API：  
+输入“什么是微积分？”，验证知识库回复。
+
+总结：巩固了模型部署知识，为MVP开发做好准备。
+时间：周日，3小时。  
+第11周（7月21日-27日，21小时）
+目标：开发创业项目MVP（AI学习助手+客服机器人）。  
+任务1：MVP需求分析（7月21日-22日，6小时）
+目标：明确MVP功能，设计系统架构。
+资源：  
+参考第6-8周对话机器人功能。  
+
+B站“产品开发入门”（搜索“MVP开发”）。
+
+学习内容：  
+MVP目标：  
+核心功能：学习助手（问答、推荐）、客服（FAQ、情绪分析）。  
+
+用户：马来西亚学生和商家（初期10个用户）。
+
+系统架构：  
+前端：简单Web界面（HTML+Flask）。  
+
+后端：Rasa（对话）、Flask（API）。  
+
+部署：AWS EC2。
+
+练习：  
+编写需求文档：  
+功能：问答（知识库）、推荐（T5）、FAQ、情绪分析。  
+
+非功能：响应时间<2秒，支持华语和马来语。
+
+绘制架构图：  
+用户 → Flask API → Rasa → 模型（BERT、T5）→ 知识库。
+
+总结：明确了MVP需求，设计了系统架构。
+注意事项：  
+聚焦核心功能（避免功能过多）。  
+
+考虑用户体验（界面简洁）。
+进阶任务：调研马来西亚学生需求（通过线上问卷）。
+时间：周一-周二，3小时/天。
+
+任务2：开发前端界面（7月23日-24日，6小时）
+目标：用Flask+HTML开发简单Web界面。
+资源：  
+Flask文档（flask.palletsprojects.com，免费）。  
+内容概述：模板渲染（2小时）。
+
+学习内容：  
+Flask模板：  
+用render_template渲染HTML。  
+
+创建聊天界面：输入框、消息显示。
+
+前端交互：  
+用JavaScript发送POST请求到Flask API。  
+
+显示Rasa回复。
+
+练习：  
+创建Web界面：  
+输入框：用户输入问题。  
+
+显示区域：展示机器人回复。
+
+测试：  
+输入“你好”，验证回复显示。
+
+代码：  
+python
+
+# app.py  
+from flask import Flask, render_template, request, jsonify  
+app = Flask(__name__)  
+@app.route("/")  
+def index():  
+    return render_template("index.html")  
+@app.route("/chat", methods=["POST"])  
+def chat():  
+    message = request.json["message"]  
+    # 假设Rasa回复  
+    return jsonify({"response": f"收到：{message}"})  
+if __name__ == "__main__":  
+    app.run(host="0.0.0.0", port=5000)  
+
+html
+
+<!-- templates/index.html -->  
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>AI助手</title>  
+</head>  
+<body>  
+    <h1>AI学习助手</h1>  
+    <input type="text" id="message" placeholder="输入问题…">  
+    <button onclick="sendMessage()">发送</button>  
+    <div id="response"></div>  
+    <script>  
+        function sendMessage() {  
+            const message = document.getElementById("message").value;  
+            fetch("/chat", {  
+                method: "POST",  
+                headers: { "Content-Type": "application/json" },  
+                body: JSON.stringify({ message: message })  
+            })  
+            .then(res => res.json())  
+            .then(data => {  
+                document.getElementById("response").innerText = data.response;  
+            });  
+        }  
+    </script>  
+</body>  
+</html>  
+
+Cursor使用：  
+创建index.html。  
+
+输入“生成简单聊天界面HTML”，按Ctrl+K补全：  
+html
+
+<input type="text" id="message" placeholder="输入问题…">  
+<button onclick="sendMessage()">发送</button>  
+
+调试：Ctrl+Shift+D，验证界面交互。
+
+总结：开发了简单Web界面，支持用户交互。
+注意事项：  
+确保JavaScript语法正确。  
+
+检查Flask端口是否可用。
+进阶任务：添加CSS美化界面（Bootstrap）。
+时间：周三-周四，3小时/天。
+
+任务3：集成后端功能（7月25日-26日，6小时）
+目标：将Rasa、BERT、T5、知识库集成到MVP。
+资源：  
+第6-8周代码（Rasa、BERT、T5、LangChain）。
+
+学习内容：  
+后端集成：  
+Rasa：处理对话逻辑（多轮对话、FAQ）。  
+
+BERT：问答、情绪分析。  
+
+T5：推荐学习资源。  
+
+LangChain：知识库问答。
+
+测试：  
+端到端测试：从用户输入到机器人回复。
+
+练习：  
+集成测试：  
+输入“推荐数学学习内容”，验证T5回复。  
+
+输入“什么是微积分？”，验证知识库回复。  
+
+输入“我不满意”，验证情绪分析回复。
+
+代码（app.py更新）：  
+python
+
+@app.route("/chat", methods=["POST"])  
+def chat():  
+    message = request.json["message"]  
+    rasa_response = requests.post("http://localhost:5005/webhooks/rest/webhook", json={"message": message})  
+    return jsonify({"response": rasa_response.json()[0]["text"]})  
+
+Cursor使用：  
+更新app.py。  
+
+输入“更新Flask API调用Rasa”，按Ctrl+K补全：  
+python
+
+rasa_response = requests.post("http://localhost:5005/webhooks/rest/webhook", json={"message": message})  
+
+调试：Ctrl+Shift+D，验证回复。
+
+总结：完成了MVP后端集成，支持核心功能。
+注意事项：  
+确保所有服务运行（Rasa、动作服务器）。  
+
+检查响应时间（目标<2秒）。
+进阶任务：添加日志功能，记录用户交互。
+时间：周五-周六，3小时/天。
+
+任务4：复习与总结（7月27日，3小时）
+目标：巩固第11周内容，规划第12周学习。
+内容：  
+复习：  
+MVP需求：功能设计、架构。  
+
+前端：Web界面开发。  
+
+后端：Rasa、模型集成。
+
+总结：  
+难点：端到端测试（功能一致性）。  
+
+收获：完成了MVP核心功能开发。
+
+规划第12周：  
+测试MVP，准备上线。  
+
+为自媒体运营做技术准备。
+
+练习：  
+测试MVP：  
+输入“Apa itu vektor?”，验证问答功能。
+
+总结：MVP开发完成，为上线测试做好准备。
+时间：周日，3小时。  
+第12周（7月28日-8月3日，21小时）
+目标：测试MVP，准备上线，为自媒体运营做技术支持。  
+任务1：MVP测试与优化（7月28日-29日，6小时）
+目标：全面测试MVP，优化性能和用户体验。
+资源：  
+第11周MVP代码。
+
+学习内容：  
+测试：  
+功能测试：问答、推荐、FAQ、情绪分析。  
+
+性能测试：响应时间（目标<2秒）。  
+
+用户体验：界面流畅性、回复准确性。
+
+优化：  
+减少响应时间：缓存知识库查询。  
+
+提高准确性：增加Rasa训练数据（50条）。
+
+练习：  
+测试用例：  
+问答：“什么是微积分？” → 知识库回复。  
+
+推荐：“推荐数学内容” → T5回复。  
+
+情绪分析：“我不满意” → 客服回复。
+
+优化：  
+记录响应时间，目标：<2秒。  
+
+增加训练数据：nlu.yml添加50条问答。
+
+代码（nlu.yml更新）：  
+yaml
+
+- intent: ask_math  
+  examples: |  
+    - 什么是微积分？  
+    - 微积分是什么？  
+    - 微积分怎么学？  
+
+Cursor使用：  
+更新nlu.yml。  
+
+输入“为Rasa添加数学问答训练数据”，按Ctrl+K补全：  
+yaml
+
+- intent: ask_math  
+  examples: |  
+    - 什么是微积分？  
+
+调试：Ctrl+Shift+D，验证配置格式。
+
+总结：完成了MVP测试，优化了性能和准确性。
+注意事项：  
+确保所有功能正常（无崩溃）。  
+
+记录测试日志，便于后续改进。
+进阶任务：添加用户反馈表单，收集测试意见。
+时间：周一-周二，3小时/天。
+
+任务2：准备上线（7月30日-31日，6小时）
+目标：完成MVP上线准备，配置域名和监控。
+资源：  
+AWS文档（aws.amazon.com，免费）。  
+内容概述：Route 53、CloudWatch（2小时）。
+
+学习内容：  
+域名配置：  
+用AWS Route 53绑定域名（需购买，如myaiapp.com）。  
+
+关联EC2公网IP。
+
+监控：  
+用CloudWatch监控EC2性能（CPU、内存）。  
+
+设置报警：CPU>80%时通知。
+
+备份：  
+用S3备份Rasa模型和知识库。
+
+练习：  
+绑定域名：  
+测试访问：http://myaiapp.com。
+
+设置CloudWatch：  
+验证报警（模拟高负载）。
+
+代码（终端命令）：  
+bash
+
+# 备份到S3  
+aws s3 cp rasa_project s3://my-bucket/rasa_backup/ --recursive  
+# 检查CloudWatch（需AWS CLI配置）  
+aws cloudwatch put-metric-alarm --alarm-name "HighCPU" --metric-name CPUUtilization --threshold 80  
+
+Cursor使用：  
+创建aws_monitor.sh。  
+
+输入“生成AWS CloudWatch报警脚本”，按Ctrl+K补全：  
+bash
+
+aws cloudwatch put-metric-alarm --alarm-name "HighCPU" --metric-name CPUUtilization --threshold 80  
+
+调试：Ctrl+Shift+D，验证命令执行。
+
+总结：完成了MVP上线准备，支持域名访问和性能监控。
+注意事项：  
+确保域名解析生效（可能需24小时）。  
+
+检查CloudWatch报警邮箱通知设置。
+进阶任务：用AWS Lambda实现自动扩展（Auto Scaling）。
+时间：周三-周四，3小时/天。
+
+任务3：自媒体运营技术支持（8月1日-2日，6小时）
+目标：为自媒体运营准备技术支持，生成推广内容。
+资源：  
+Hugging Face文档（huggingface.co，免费）。  
+内容概述：文本生成（2小时）。
+
+学习内容：  
+文本生成：  
+用T5生成推广文案（第7周T5模型）。  
+
+目标：生成吸引马来西亚学生的文案。
+
+数据收集：  
+用Flask记录用户交互数据（问题、回复）。  
+
+分析用户需求，为推广优化。
+
+练习：  
+生成文案：  
+输入：“推广AI学习助手给马来西亚学生”。  
+
+输出目标：“使用我们的AI学习助手，轻松掌握数学和科学，支持华语和马来语！”
+
+收集数据：  
+记录用户输入（存为user_logs.csv）。
+
+代码（app.py更新）：  
+python
+
+import csv  
+@app.route("/chat", methods=["POST"])  
+def chat():  
+    message = request.json["message"]  
+    rasa_response = requests.post("http://localhost:5005/webhooks/rest/webhook", json={"message": message})  
+    response_text = rasa_response.json()[0]["text"]  
+    # 记录日志  
+    with open("user_logs.csv", "a") as f:  
+        writer = csv.writer(f)  
+        writer.writerow([message, response_text])  
+    return jsonify({"response": response_text})  
+
+Cursor使用：  
+更新app.py。  
+
+输入“为Flask添加用户日志记录”，按Ctrl+K补全：  
+python
+
+import csv  
+with open("user_logs.csv", "a") as f:  
+    writer = csv.writer(f)  
+    writer.writerow([message, response_text])  
+
+调试：Ctrl+Shift+D，验证日志记录。
+
+总结：为自媒体运营准备了技术支持，生成了推广文案。
+注意事项：  
+确保文案符合本地文化（避免敏感词）。  
+
+检查日志文件权限（需可写）。
+进阶任务：用T5生成多语言文案（华语、马来语）。
+时间：周五-周六，3小时/天。
+
+任务4：复习与总结（8月3日，3小时）
+目标：总结第9-12周内容，规划后续创业和自媒体运营。
+内容：  
+复习：  
+RL：Q-Learning、推荐系统优化。  
+
+部署：AWS、Flask API。  
+
+MVP：开发、测试、上线。  
+
+自媒体：推广文案、数据收集。
+
+总结：  
+难点：AWS端口配置、MVP测试一致性。  
+
+收获：完成了MVP开发和上线，支持创业项目。
+
+规划后续：  
+创业：联系初期用户（10个学生/商家），收集反馈。  
+
+自媒体：制作推广视频，发布到B站和YouTube。
+
+练习：  
+测试MVP：  
+输入“Apa itu vektor?”，验证问答功能。
+
+分析日志：  
+查看user_logs.csv，统计常见问题。
+
+总结：完成了第9-12周学习目标，MVP上线成功，为创业和自媒体运营奠定了基础。
+时间：周日，3小时。  
+第9-12周最终成果（8月3日）
+技能：  
+强化学习：Q-Learning（推荐系统优化）。  
+
+模型部署：AWS（EC2、S3、Route 53、CloudWatch）。  
+
+创业开发：MVP（AI学习助手+客服机器人）。  
+
+自媒体支持：文本生成（T5）、用户数据收集。
+
+成果：  
+优化了推荐系统（Q-Learning，电影推荐准确率提升）。  
+
+部署了对话机器人（AWS EC2，支持域名访问）。  
+
+开发并上线了MVP，支持问答、推荐、FAQ、情绪分析。  
+
+准备了自媒体运营技术支持（文案生成、数据收集）。
+
+文件：  
+Markdown：AI_Learning_Plan_84Days_Weeks9-12.md（2万字，40页）。
+
+总结与后续衔接
+第9-12周收获：掌握了强化学习和模型部署技术，完成了创业项目MVP开发和上线，为自媒体运营提供了技术支持。  
+
+与创业计划衔接：MVP支持多语言问答、推荐和客服功能，可直接用于马来西亚市场（初期10个用户），符合你之前提到的餐饮和教育领域的创业目标。  
+
+后续建议：  
+创业：联系初期用户（学生和商家），收集反馈，迭代MVP。  
+
+自媒体：制作推广视频（B站、YouTube），结合T5生成的文案，吸引更多用户。  
+
+技术提升：学习MLOps（模型监控、持续集成），确保系统稳定运行。
+
+如果需要调整第9-12周计划或生成创业和自媒体手册（之前建议7月28日后，现在已到8月3日，可以开始），请告诉我！
+
