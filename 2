@@ -1,0 +1,566 @@
+背景回顾：前4周AI学习计划
+目标：通过4周（28天，每天3小时，84小时）学习AI基础知识，为开发AI学习助手和客服机器人打下基础。
+学习内容：  
+第1周：AI基础（概念、数学基础、Python编程）。  
+
+第2周：机器学习入门（监督学习、Scikit-learn、线性回归）。  
+
+第3周：自然语言处理（NLP）基础（NLTK、词袋模型、TF-IDF）。  
+
+第4周：对话系统（Rasa基础、意图识别、对话管理）。
+资源：  
+
+免费在线课程：Coursera（coursera.org）、B站（搜索“AI入门”）。  
+
+工具：Python 3.9、Jupyter Notebook、Rasa 3.6、Hugging Face。
+成果：  
+
+掌握AI基础知识，完成一个简单的对话机器人（Rasa），可以处理基本问答（“什么是AI？”）。  
+
+学习时间：84小时（28天×3小时/天）。
+
+第5-8周目标：  
+继续深入学习AI，重点掌握更高级的NLP技术（如BERT、T5）和对话系统优化（如多轮对话、情绪分析）。  
+
+开发一个支持多语言（华语、英语、马来语）的对话机器人，具备学习助手（问答、推荐）和客服功能（FAQ、多轮对话）。  
+
+为后续创业计划（AI学习助手+客服机器人）提供技术支持。
+
+AI学习计划：第5-8周（后一个月）
+时间：28天（7月7日-8月3日），每天3小时，共84小时。
+格式：Markdown（AI_Learning_Plan_8Weeks.md）。
+字数：第5-8周约1.5万字（30页），总计3万字（60页）。
+目标：掌握高级NLP技术，开发多语言对话机器人，支持问答、推荐、FAQ、多轮对话，具备情绪分析功能。  
+第5周（7月7-13日，21小时）
+目标：学习深度学习基础（神经网络、PyTorch），初步接触BERT模型，为NLP任务做准备。  
+任务1：深度学习基础（神经网络）（6小时）
+资源：  
+Coursera“Neural Networks and Deep Learning”（coursera.org，免费）。  
+内容概述：神经网络基础（2小时）。
+
+B站“深度学习入门”（搜索“神经网络基础”）。  
+内容概述：第1-2集（1小时）。
+
+学习内容：  
+神经网络概念：感知机、前向传播、反向传播。  
+
+激活函数：Sigmoid、ReLU。  
+
+损失函数：均方误差（MSE）、交叉熵。
+
+练习：  
+用Python实现一个简单感知机（手写代码）。  
+
+输入：[1, 0]，权重：[0.5, 0.5]，偏置：0.1，计算输出（Sigmoid激活）。
+
+总结：掌握神经网络基础，为后续学习BERT做准备。  
+
+时间：周一-周二，3小时/天。  
+
+代码：  
+python
+
+import numpy as np  
+def sigmoid(x):  
+    return 1 / (1 + np.exp(-x))  
+inputs = np.array([1, 0])  
+weights = np.array([0.5, 0.5])  
+bias = 0.1  
+output = sigmoid(np.dot(inputs, weights) + bias)  
+print(f"Output: {output}")  # Output: 0.6224593312018546  
+
+任务2：PyTorch基础（6小时）
+资源：  
+PyTorch官网教程（pytorch.org，免费）。  
+内容概述：张量、自动求导（2小时）。
+
+B站“PyTorch入门”（搜索“PyTorch基础”）。  
+内容概述：第1-2集（1小时）。
+
+学习内容：  
+安装PyTorch：pip install torch。  
+
+张量操作：创建、加减、矩阵乘法。  
+
+自动求导：requires_grad=True，计算梯度。
+
+练习：  
+用PyTorch构建一个简单神经网络（1个隐藏层）。  
+
+输入：2维，隐藏层：3个神经元，输出：1维。  
+
+计算前向传播和梯度。
+
+总结：掌握PyTorch基础，为后续模型训练做准备。  
+
+时间：周三-周四，3小时/天。  
+
+代码：  
+python
+
+import torch  
+import torch.nn as nn  
+# 定义网络  
+class SimpleNN(nn.Module):  
+    def __init__(self):  
+        super(SimpleNN, self).__init__()  
+        self.layer1 = nn.Linear(2, 3)  
+        self.relu = nn.ReLU()  
+        self.layer2 = nn.Linear(3, 1)  
+    def forward(self, x):  
+        x = self.relu(self.layer1(x))  
+        x = self.layer2(x)  
+        return x  
+# 测试  
+model = SimpleNN()  
+x = torch.tensor([1.0, 0.0], requires_grad=True)  
+y = model(x)  
+y.backward()  
+print(f"Gradient: {x.grad}")  
+
+任务3：BERT模型入门（6小时）
+资源：  
+Hugging Face教程（huggingface.co，免费）。  
+内容概述：BERT介绍、安装（2小时）。
+
+B站“BERT入门”（搜索“BERT基础”）。  
+内容概述：第1集（1小时）。
+
+学习内容：  
+BERT原理：Transformer、注意力机制、预训练。  
+
+安装Hugging Face：pip install transformers。  
+
+加载BERT：bert-base-multilingual-cased（支持多语言）。
+
+练习：  
+用BERT进行文本分类（情感分析）。  
+
+数据：["我不满意", "很好"]，标签：["negative", "positive"]。  
+
+测试分类准确率。
+
+总结：初步掌握BERT，为NLP任务做准备。  
+
+时间：周五-周六，3小时/天。  
+
+代码：  
+python
+
+from transformers import BertTokenizer, BertForSequenceClassification  
+tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")  
+model = BertForSequenceClassification.from_pretrained("bert-base-multilingual-cased")  
+inputs = tokenizer("我不满意", return_tensors="pt")  
+outputs = model(**inputs)  
+print("Logits:", outputs.logits)  
+
+任务4：复习与总结（3小时）
+内容：  
+复习神经网络、PyTorch、BERT。  
+
+记录难点：如梯度计算、BERT预训练。  
+
+规划下周：BERT微调、对话系统优化。
+
+总结：巩固深度学习基础，准备高级NLP任务。  
+
+时间：周日，3小时。
+
+第5周总结：  
+成果：掌握神经网络、PyTorch、BERT基础，能用BERT进行简单情感分析。  
+
+时间：21小时（周一-周日，3小时/天）。
+
+第6周（7月14-20日，21小时）
+目标：BERT微调（多语言问答），优化Rasa对话系统，支持多轮对话。  
+任务1：BERT微调（多语言问答）（6小时）
+资源：  
+Hugging Face教程（huggingface.co，免费）。  
+内容概述：微调BERT（2小时）。
+
+天池“教育问答”（tianchi.aliyun.com，免费）。  
+内容概述：多语言问答数据（0.5小时）。
+
+学习内容：  
+准备数据：  
+华语：{"question": "什么是微积分？", "answer": "微积分是研究变化的数学分支。"}。  
+
+马来语：{"question": "Apa itu vektor?", "answer": "Vektor ialah kuantiti dengan magnitud dan arah."}。
+
+微调BERT：  
+加载bert-base-multilingual-cased。  
+
+微调（3轮，约2小时）。
+
+练习：  
+测试：输入“Apa itu vektor?”，验证输出。
+
+总结：掌握BERT微调，支持多语言问答。  
+
+时间：周一-周二，3小时/天。  
+
+代码：  
+python
+
+from transformers import BertTokenizer, BertForQuestionAnswering, Trainer, TrainingArguments  
+tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")  
+model = BertForQuestionAnswering.from_pretrained("bert-base-multilingual-cased")  
+# 假设数据已准备好，微调代码简化  
+inputs = tokenizer("Apa itu vektor?", return_tensors="pt")  
+outputs = model(**inputs)  
+print("Answer:", tokenizer.decode(outputs.start_logits.argmax()))  
+
+任务2：Rasa多轮对话（6小时）
+资源：  
+Rasa文档（rasa.com，免费）。  
+内容概述：Slots、Forms（2小时）。
+
+B站“Rasa进阶”（搜索“Rasa多轮对话”）。  
+内容概述：第1集（1小时）。
+
+学习内容：  
+Slots：存储用户输入（如topic=数学）。  
+
+Forms：多轮对话收集信息。  
+
+Stories：定义对话流程。
+
+练习：  
+创建Form：study_form（收集topic和difficulty）。  
+
+测试：输入“我想学数学，难度中等”，验证Form填写。
+
+总结：掌握Rasa多轮对话，提升机器人交互能力。  
+
+时间：周三-周四，3小时/天。  
+
+代码（domain.yml）：  
+yaml
+
+slots:  
+  topic:  
+    type: text  
+  difficulty:  
+    type: text  
+forms:  
+  study_form:  
+    required_slots:  
+      - topic  
+      - difficulty  
+responses:  
+  utter_ask_topic:  
+    - text: "您想学什么科目？"  
+  utter_ask_difficulty:  
+    - text: "您想要什么难度？"  
+
+任务3：集成BERT到Rasa（6小时）
+资源：  
+Rasa文档（rasa.com，免费）。  
+内容概述：自定义动作（1小时）。
+
+学习内容：  
+创建自定义动作：action_answer_question。  
+
+调用BERT模型回答问题。
+
+练习：  
+测试：输入“什么是微积分？”，验证BERT回答。
+
+总结：实现BERT与Rasa集成，支持智能问答。  
+
+时间：周五-周六，3小时/天。  
+
+代码（actions.py）：  
+python
+
+from rasa_sdk import Action  
+from transformers import BertTokenizer, BertForQuestionAnswering  
+class ActionAnswerQuestion(Action):  
+    def name(self):  
+        return "action_answer_question"  
+    def run(self, dispatcher, tracker, domain):  
+        question = tracker.latest_message["text"]  
+        tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")  
+        model = BertForQuestionAnswering.from_pretrained("bert-base-multilingual-cased")  
+        inputs = tokenizer(question, return_tensors="pt")  
+        outputs = model(**inputs)  
+        answer = tokenizer.decode(outputs.start_logits.argmax())  
+        dispatcher.utter_message(text=f"答案：{answer}")  
+        return []  
+
+任务4：复习与总结（3小时）
+内容：  
+复习BERT微调、Rasa多轮对话。  
+
+记录难点：如BERT微调数据准备。  
+
+规划下周：学习推荐系统、情绪分析。
+
+总结：巩固NLP技术，提升对话机器人能力。  
+
+时间：周日，3小时。
+
+第6周总结：  
+成果：BERT微调支持多语言问答，Rasa实现多轮对话，集成BERT到Rasa。  
+
+时间：21小时（周一-周日，3小时/天）。
+
+第7周（7月21-27日，21小时）
+目标：学习推荐系统（T5），添加情绪分析功能，优化对话机器人。  
+任务1：学习推荐系统（T5）（6小时）
+资源：  
+Hugging Face教程（huggingface.co，免费）。  
+内容概述：T5文本生成（2小时）。
+
+学习内容：  
+T5原理：文本到文本转换框架。  
+
+准备数据：  
+{"input": "推荐数学学习内容", "output": "线性代数：B站3Blue1Brown"}。
+
+微调T5：  
+加载t5-small，微调（3轮）。
+
+练习：  
+测试：输入“推荐数学学习内容”，验证输出。
+
+总结：掌握T5推荐功能，支持学习助手。  
+
+时间：周一-周二，3小时/天。  
+
+代码：  
+python
+
+from transformers import T5Tokenizer, T5ForConditionalGeneration  
+tokenizer = T5Tokenizer.from_pretrained("t5-small")  
+model = T5ForConditionalGeneration.from_pretrained("t5-small")  
+input_text = "推荐数学学习内容"  
+inputs = tokenizer(input_text, return_tensors="pt")  
+outputs = model.generate(**inputs)  
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))  
+
+任务2：情绪分析（BERT）（6小时）
+资源：  
+Hugging Face教程（huggingface.co，免费）。  
+内容概述：情绪分类（2小时）。
+
+学习内容：  
+准备数据：  
+{"text": "我不满意", "label": "negative"}。
+
+微调BERT：  
+加载bert-base-multilingual-cased，微调（3轮）。
+
+集成到Rasa：  
+添加自定义动作：action_analyze_emotion。
+
+练习：  
+测试：输入“我不满意”，验证回复：“很抱歉让您不满意。”
+
+总结：添加情绪分析，提升客服体验。  
+
+时间：周三-周四，3小时/天。  
+
+代码（actions.py）：  
+python
+
+class ActionAnalyzeEmotion(Action):  
+    def name(self):  
+        return "action_analyze_emotion"  
+    def run(self, dispatcher, tracker, domain):  
+        text = tracker.latest_message["text"]  
+        tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")  
+        model = BertForSequenceClassification.from_pretrained("bert-base-multilingual-cased")  
+        inputs = tokenizer(text, return_tensors="pt")  
+        outputs = model(**inputs)  
+        label = "negative" if outputs.logits.argmax() == 0 else "positive"  
+        if label == "negative":  
+            dispatcher.utter_message(text="很抱歉让您不满意，我们会改进。")  
+        else:  
+            dispatcher.utter_message(text="很高兴您满意！")  
+        return []  
+
+任务3：对话机器人优化（6小时）
+资源：  
+Rasa文档（rasa.com，免费）。  
+内容概述：对话优化（2小时）。
+
+学习内容：  
+优化意图识别：增加训练数据（50条）。  
+
+添加FAQ：{"question": "如何退款？", "answer": "请联系客服…"}。
+
+练习：  
+测试：输入“如何退款？”，验证回复。
+
+总结：优化对话机器人，支持FAQ和复杂对话。  
+
+时间：周五-周六，3小时/天。  
+
+代码（nlu.yml）：  
+yaml
+
+- intent: ask_refund  
+  examples: |  
+    - 如何退款？  
+    - 我想退款  
+
+任务4：复习与总结（3小时）
+内容：  
+复习T5推荐、情绪分析、对话优化。  
+
+记录难点：如T5微调效果不佳。  
+
+规划下周：知识库集成、语音支持。
+
+总结：提升对话机器人功能，支持推荐和情绪分析。  
+
+时间：周日，3小时。
+
+第7周总结：  
+成果：T5实现推荐功能，BERT添加情绪分析，优化对话机器人。  
+
+时间：21小时（周一-周日，3小时/天）。
+
+第8周（7月28日-8月3日，21小时）
+目标：知识库集成（LangChain），添加语音支持（Wav2Vec2），测试完整机器人。  
+任务1：知识库集成（LangChain）（6小时）
+资源：  
+LangChain文档（langchain.com，免费）。  
+内容概述：知识库搭建（2小时）。
+
+B站“LangChain教程”（搜索“LangChain入门”）。  
+内容概述：第1集（1小时）。
+
+学习内容：  
+安装LangChain：pip install langchain。  
+
+搭建知识库：  
+数据：knowledge_base.txt（50条问答，如“什么是微积分？”）。  
+
+用TextLoader和FAISS创建向量数据库。
+
+练习：  
+测试：输入“什么是微积分？”，验证知识库回答。
+
+总结：掌握LangChain知识库集成，提升问答能力。  
+
+时间：周一-周二，3小时/天。  
+
+代码：  
+python
+
+from langchain.document_loaders import TextLoader  
+from langchain.embeddings import HuggingFaceEmbeddings  
+from langchain.vectorstores import FAISS  
+loader = TextLoader("knowledge_base.txt")  
+documents = loader.load()  
+embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")  
+vectorstore = FAISS.from_documents(documents, embeddings)  
+vectorstore.save_local("faiss_index")  
+
+任务2：语音支持（Wav2Vec2）（6小时）
+资源：  
+Hugging Face教程（huggingface.co，免费）。  
+内容概述：语音识别（2小时）。
+
+学习内容：  
+安装Wav2Vec2：pip install transformers。  
+
+加载模型：facebook/wav2vec2-base。  
+
+微调：用马来西亚语音数据（公开数据集，20条）。
+
+练习：  
+测试：输入语音“什么是微积分？”，验证转文本和回复。
+
+总结：添加语音支持，提升用户体验。  
+
+时间：周三-周四，3小时/天。  
+
+code：  
+python
+
+from transformers import Wav2Vec2ForCTC, Wav2Vec2Tokenizer  
+tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-base")  
+model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base")  
+# 假设音频文件  
+# import librosa  
+# audio, sr = librosa.load("voice.wav")  
+# inputs = tokenizer(audio, return_tensors="pt", sampling_rate=16000)  
+# logits = model(**inputs).logits  
+
+任务3：测试完整机器人（6小时）
+资源：  
+Rasa文档（rasa.com，免费）。  
+内容概述：测试（1小时）。
+
+学习内容：  
+测试功能：  
+问答：输入“什么是微积分？”，验证知识库回复。  
+
+推荐：输入“推荐数学内容”，验证T5回复。  
+
+情绪分析：输入“我不满意”，验证回复。  
+
+语音：输入语音，验证转文本和回复。
+
+练习：  
+记录测试结果：准确率（目标>90%）。
+
+总结：完成多语言对话机器人，支持问答、推荐、FAQ、情绪分析、语音。  
+
+时间：周五-周六，3小时/天。
+
+任务4：复习与总结（3小时）
+内容：  
+复习知识库、语音支持。  
+
+总结8周学习：掌握AI基础、NLP、对话系统。  
+
+规划后续：将机器人部署到创业项目中。
+
+总结：完成AI学习目标，准备创业开发。  
+
+时间：周日，3小时。
+
+第8周总结：  
+成果：知识库集成、语音支持，完成多语言对话机器人测试。  
+
+时间：21小时（周一-周日，3小时/天）。
+
+第5-8周最终成果（8月3日）
+技能：  
+深度学习：神经网络、PyTorch。  
+
+NLP：BERT微调（多语言问答）、T5推荐、情绪分析、知识库（LangChain）、语音支持（Wav2Vec2）。  
+
+对话系统：Rasa多轮对话、FAQ、集成BERT/T5。
+
+成果：  
+开发一个多语言对话机器人，支持问答、推荐、FAQ、情绪分析、语音输入。  
+
+可处理：  
+问答：“什么是微积分？”（知识库）。  
+
+推荐：“推荐数学内容”（T5）。  
+
+客服：“我不满意”（情绪分析）。  
+
+语音：语音输入“Apa itu vektor?”。
+
+文件：  
+Markdown：AI_Learning_Plan_8Weeks.md（3万字，60页）。
+
+总结与后续
+第5-8周成果：成功掌握高级NLP技术，开发出功能完善的对话机器人，为创业项目（AI学习助手+客服机器人）提供了技术支持。  
+
+与创业计划衔接：第5-8周学习的BERT、T5、知识库、语音支持等技术，直接用于第3-4个月创业计划的功能开发（如知识库集成、语音支持）。  
+
+后续建议：  
+将机器人部署到创业项目中（第3-4个月已规划）。  
+
+继续学习：如强化学习（优化推荐）、云计算（AWS部署）。
+
+如果需要调整第5-8周计划或查看完整学习计划文件，请告诉我！
+
