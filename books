@@ -1,0 +1,257 @@
+针对120天AI学习手册（每天3小时，涵盖机器学习、深度学习、强化学习、自然语言处理、计算机视觉、C++编程、MLOps、大模型如BERT/LLaMA、框架如Rasa/LangChain/Hugging Face/PyTorch，以及Kaggle/天池竞赛和arXiv论文阅读），以下是一些贴合学习内容的免费电子书和资源，涵盖理论、实践和编程。这些资源可以辅助你的学习，节省成本，同时紧扣计划中的核心主题。
+我根据你的学习计划，精选了与机器学习、深度学习、强化学习、NLP、计算机视觉、C++、MLOps、大模型及相关框架直接相关的免费电子书和在线资源，并确保它们权威、实用且易于获取。以下资源按主题分类，附带简要说明和获取链接，方便你融入120天学习计划。
+1. 机器学习与深度学习
+这些资源覆盖机器学习基础、深度学习算法（如CNN、RNN、Transformer）以及数学原理，适合计划中的理论学习和Kaggle/天池竞赛准备。
+《Deep Learning》 by Ian Goodfellow, Yoshua Bengio, and Aaron Courville  
+内容：深度学习领域的“圣经”，涵盖神经网络、卷积网络、循环网络、优化方法、生成模型等，适合理解CNN、RNN、Transformer的理论基础。  
+
+适合阶段：第1-40天（基础理论）、第41-80天（深度学习算法）。  
+
+免费链接：https://www.deeplearningbook.org/ （官方免费在线版本）  
+
+补充说明：包含数学推导，适合搭配计划中的理论推导任务；可结合PyTorch代码实现书中的模型。
+
+《Pattern Recognition and Machine Learning》 by Christopher M. Bishop  
+内容：机器学习经典教材，覆盖概率模型、线性模型、贝叶斯方法、核方法等，适合理解SVM、概率统计和模型优化。  
+
+适合阶段：第1-40天（概率统计、机器学习基础）。  
+
+免费链接：https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/ （部分章节免费，或通过学术资源库获取PDF）。  
+
+补充说明：理论偏重，建议结合Kaggle数据集练习书中的算法。
+
+《Dive into Deep Learning》 by Aston Zhang, Zachary C. Lipton, et al.  
+内容：交互式深度学习教程，涵盖线性回归、CNN、RNN、Transformer、生成模型等，包含PyTorch代码实现。  
+
+适合阶段：第41-80天（深度学习实战）、第81-120天（Transformer、竞赛项目）。  
+
+免费链接：https://d2l.ai/ （官方免费在线版本，含Jupyter Notebook）。  
+
+补充说明：适合动手实践，代码可直接运行，推荐用于Kaggle图像分类或NLP任务。
+
+《Machine Learning Yearning》 by Andrew Ng  
+内容：吴恩达的实用指南，聚焦机器学习项目策略，如数据划分、模型选择、误差分析，适合竞赛和生产级开发。  
+
+适合阶段：第41-80天（项目设计）、第81-120天（Kaggle/天池竞赛）。  
+
+免费链接：https://www.deeplearning.ai/wp-content/uploads/2021/03/Machine-Learning-Yearning.pdf （官方免费PDF）。  
+
+补充说明：短小精悍，适合快速掌握竞赛和项目开发的实用技巧。
+
+2. 强化学习
+强化学习是计划中重要部分（Q-learning、DQN、PPO等），以下资源适合理论学习和Gymnasium环境实践。
+《Reinforcement Learning: An Introduction》 by Richard S. Sutton and Andrew G. Barto  
+内容：强化学习经典教材，覆盖MDP、Q-learning、SARSA、DQN、PPO、A3C等，包含理论和伪代码。  
+
+适合阶段：第41-80天（强化学习基础）、第81-120天（高级算法如PPO、模仿学习）。  
+
+免费链接：http://incompleteideas.net/book/the-book-2nd.html （官方免费在线版本）。  
+
+补充说明：适合搭配Gymnasium实现书中算法，推荐复现DQN或PPO项目。
+
+《Deep Reinforcement Learning Hands-On》 by Maxim Lapan  
+内容：实用强化学习教程，基于PyTorch实现DQN、A2C、PPO等算法，包含Gym环境实践案例。  
+
+适合阶段：第81-120天（强化学习实战）。  
+
+免费链接：https://github.com/PacktPublishing/Deep-Reinforcement-Learning-Hands-On （部分章节免费，完整PDF可通过学术资源或开源社区获取）。  
+
+补充说明：代码驱动，适合计划中的强化学习微项目，如CartPole或Atari游戏。
+
+3. 自然语言处理（NLP）与大模型
+这些资源覆盖NLP基础、Transformer、BERT、LLaMA微调，以及Rasa/LangChain开发，适合计划中的对话系统和文本生成任务。
+《Speech and Language Processing》 by Dan Jurafsky and James H. Martin  
+内容：NLP经典教材，涵盖语言模型、词嵌入、序列模型、Transformer、BERT等，适合理解NLP理论。  
+
+适合阶段：第41-80天（NLP基础）、第81-120天（Transformer、BERT）。  
+
+免费链接：https://web.stanford.edu/~jurafsky/slp3/ （官方免费在线版本，部分章节）。  
+
+补充说明：理论全面，建议搭配Hugging Face实现BERT或T5模型。
+
+《Transformers for Natural Language Processing》 by Denis Rothman  
+内容：聚焦Transformer架构，涵盖BERT、GPT、T5的实现和微调，基于Hugging Face和PyTorch。  
+
+适合阶段：第81-120天（大模型微调、Hugging Face实践）。  
+
+免费链接：https://github.com/PacktPublishing/Transformers-for-Natural-Language-Processing （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合计划中的BERT/LLaMA微调任务，代码可直接用于文本分类或生成。
+
+《Natural Language Processing with Python》 by Steven Bird, Ewan Klein, and Edward Loper  
+内容：基于NLTK的NLP入门教程，覆盖分词、词性标注、语义分析，适合初学者。  
+
+适合阶段：第1-40天（NLP入门）。  
+
+免费链接：http://www.nltk.org/book/ （官方免费在线版本）。  
+
+补充说明：适合快速上手NLP基础，搭配Rasa开发对话系统。
+
+4. 计算机视觉
+这些资源适合计划中的图像分类、目标检测任务，结合CNN和Kaggle图像竞赛。
+《Deep Learning for Computer Vision》 by Rajalingappaa Shanmugamani  
+内容：计算机视觉入门，覆盖CNN、RCNN、YOLO、图像分割，基于PyTorch实现。  
+
+适合阶段：第41-80天（计算机视觉基础）、第81-120天（Kaggle图像任务）。  
+
+免费链接：https://github.com/PacktPublishing/Deep-Learning-for-Computer-Vision （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合Kaggle图像分类或目标检测项目，代码可直接运行。
+
+《Computer Vision: Algorithms and Applications》 by Richard Szeliski  
+内容：计算机视觉权威教材，覆盖图像处理、特征检测、立体视觉、深度学习方法。  
+
+适合阶段：第41-80天（计算机视觉理论）。  
+
+免费链接：http://szeliski.org/Book/ （官方免费PDF，部分章节）。  
+
+补充说明：理论深入，适合理解CNN背后的数学原理，搭配PyTorch实践。
+
+5. C++编程
+C++是计划中高性能编程和模型优化的核心，以下资源适合系统编程和CUDA开发。
+《C++ Primer》 by Stanley B. Lippman, Josée Lajoie, and Barbara E. Moo  
+内容：C++入门到进阶，覆盖面向对象、STL、模板、并发编程，适合系统开发。  
+
+适合阶段：第1-40天（C++基础）、第81-120天（高性能编程）。  
+
+免费链接：https://github.com/PacktPublishing/C-Primer-Plus （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合计划中的C++模块开发，建议实现矩阵运算或推理优化。
+
+《CUDA by Example》 by Jason Sanders and Edward Kandrot  
+内容：CUDA编程入门，基于C++开发GPU并行计算，适合模型推理优化。  
+
+适合阶段：第81-120天（CUDA优化）。  
+
+免费链接：https://developer.nvidia.com/cuda-example （官方免费PDF）。  
+
+补充说明：直接支持计划中的CUDA任务，推荐实现卷积或矩阵乘法。
+
+6. MLOps
+MLOps资源适合计划中的模型部署、监控和CI/CD流水线开发。
+《Introduction to Machine Learning with Python》 by Andreas C. Müller and Sarah Guido  
+内容：机器学习工程化教程，覆盖Scikit-learn、模型评估、管道构建，适合MLOps入门。  
+
+适合阶段：第41-80天（MLOps基础）。  
+
+免费链接：https://github.com/amueller/introduction_to_ml_with_python （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合搭建数据处理和模型训练流水线，搭配Docker实践。
+
+《MLOps: Machine Learning Operations》 by Noah Gift  
+内容：MLOps实战指南，覆盖CI/CD、Docker、模型监控、云部署。  
+
+适合阶段：第81-120天（生产级部署）。  
+
+免费链接：https://github.com/PacktPublishing/MLOps-Engineering-at-Scale （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合计划中的Docker和CI/CD任务，推荐部署对话系统。
+
+7. 大模型与框架（Hugging Face、Rasa、LangChain）
+这些资源聚焦大模型微调和对话系统开发，贴合计划中的Rasa/LangChain项目。
+《Hugging Face Transformers Documentation》  
+内容：Hugging Face官方文档，涵盖BERT、LLaMA、T5的微调、部署和应用，包含PyTorch代码。  
+
+适合阶段：第81-120天（大模型微调、Hugging Face实践）。  
+
+免费链接：https://huggingface.co/docs/transformers/index （免费在线文档）。  
+
+补充说明：权威资源，适合复现BERT或LLaMA微调任务，直接支持Hugging Face项目。
+
+《Rasa Open Source Documentation》  
+内容：Rasa官方文档，覆盖对话系统设计、意图识别、实体提取、部署。  
+
+适合阶段：第81-120天（对话系统开发）。  
+
+免费链接：https://rasa.com/docs/rasa/ （免费在线文档）。  
+
+补充说明：适合开发计划中的客服机器人，推荐结合LangChain增强功能。
+
+《LangChain Documentation》  
+内容：LangChain官方文档，覆盖LLM集成、向量数据库、Agent开发，基于Python实现。  
+
+适合阶段：第81-120天（多模态Agent开发）。  
+
+免费链接：https://python.langchain.com/docs/ （免费在线文档）。  
+
+补充说明：支持计划中的多模态项目，推荐开发检索增强生成（RAG）应用。
+
+8. Kaggle/天池竞赛与arXiv论文
+这些资源帮助你掌握竞赛技巧和前沿论文阅读。
+《Kaggle Book》 by Konrad Banachewicz and Luca Massaron  
+内容：Kaggle竞赛指南，覆盖数据清洗、特征工程、模型调优、团队协作。  
+
+适合阶段：第41-80天（竞赛入门）、第81-120天（中级竞赛）。  
+
+免费链接：https://github.com/PacktPublishing/The-Kaggle-Book （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合计划中的Kaggle/天池项目，推荐练习排行榜任务。
+
+arXiv论文资源  
+内容：arXiv提供机器学习、NLP、计算机视觉、强化学习等领域最新论文，适合计划中的论文阅读和复现。  
+
+适合阶段：第1-120天（每天阅读摘要，复现10+篇论文）。  
+
+免费链接：https://arxiv.org/list/cs.LG/recent （机器学习最新论文）、https://arxiv.org/list/cs.CL/recent （NLP最新论文）。  
+
+补充说明：建议使用ar5iv（https://ar5iv.labs.arxiv.org/）查看论文HTML版本，搭配GitHub搜索论文代码复现。
+
+9. 综合资源与社区
+以下平台提供免费教程、代码和数据集，支持计划中的微项目和竞赛。
+GitHub - Machine Learning Tutorials  
+内容：包含神经网络、Transformer、强化学习的Python实现，适合学习和复现。  
+
+免费链接：https://github.com/ujjwalkarn/Machine-Learning-Tutorials （综合教程集合）。  
+
+补充说明：支持计划中的代码实现任务，推荐搜索PyTorch或C++相关项目。
+
+Papers with Code  
+内容：提供arXiv论文和开源代码的链接，覆盖机器学习、NLP、计算机视觉等。  
+
+免费链接：https://paperswithcode.com/ （免费访问）。  
+
+补充说明：适合复现计划中的10+篇论文，推荐搜索BERT、LLaMA或DQN相关代码。
+
+Google Colab  
+内容：免费云端Jupyter Notebook，支持PyTorch、Hugging Face、Gymnasium，含GPU资源。  
+
+免费链接：https://colab.research.google.com/ （免费注册使用）。  
+
+补充说明：适合运行计划中的微项目和竞赛代码，节省本地算力。
+
+10. 获取建议与注意事项
+获取完整PDF：部分书籍（如Packt出版社的）完整PDF可能需通过学术资源库（如ResearchGate）、开源社区（如GitHub）或图书馆获取。建议加入AI相关社区（如Reddit r/MachineLearning、Hugging Face论坛）询问共享资源。
+
+结合学习计划：
+第1-40天：优先阅读《Deep Learning》、《Pattern Recognition and Machine Learning》、《C++ Primer》打基础，搭配NLTK书学习NLP入门。
+
+第41-80天：深入《Dive into Deep Learning》、《Reinforcement Learning》、《Speech and Language Processing》，结合Kaggle练习和MLOps入门。
+
+第81-120天：聚焦《Transformers for Natural Language Processing》、《Deep Reinforcement Learning Hands-On》、《CUDA by Example》，开发对话系统、强化学习项目和C++优化模块，同时参与Kaggle/天池竞赛。
+
+论文阅读：每天浏览arXiv最新论文摘要（cs.LG、cs.CL、cs.CV），选择与计划主题相关的论文（如Transformer、PPO）复现，优先找GitHub代码支持。
+
+本地化支持：如果你在国内，可使用天池（https://tianchi.aliyun.com/）的免费数据集和竞赛资源，结合《Kaggle Book》学习竞赛策略；Hugging Face和LangChain文档支持中文模型微调（如ChatGLM）。
+
+时间管理：每本书建议每周阅读1-2章，搭配代码实践（1小时阅读+2小时编码），确保理论与实战结合。
+
+11. 针对创业的补充资源
+考虑到你提到本地AI创业，以下资源可进一步支持开发本地化AI产品：
+《Building Machine Learning Powered Applications》 by Emmanuel Ameisen  
+内容：从原型到生产级AI应用的指南，覆盖需求分析、模型开发、部署，适合创业初期产品设计。  
+
+免费链接：https://github.com/eugeneyan/building-ml-powered-applications （部分章节免费，完整PDF可通过开源社区获取）。  
+
+补充说明：适合开发本地化对话系统或推荐系统，结合Rasa/LangChain实践。
+
+Hugging Face Datasets  
+内容：免费开源数据集，覆盖NLP、图像、语音，适合本地化模型训练。  
+
+免费链接：https://huggingface.co/datasets （免费访问）。  
+
+补充说明：可下载中文数据集（如Weibo情感分析）进行微调，降低创业数据成本。
+
+总结
+以上免费电子书和资源紧扣120天AI学习手册的主题，覆盖机器学习、深度学习、强化学习、NLP、计算机视觉、C++编程、MLOps、大模型及相关框架，确保理论学习、代码实践和竞赛准备的全面支持。这些资源可通过官方链接、GitHub或学术社区获取，适合零成本学习。对于创业，建议重点利用Hugging Face、Rasa、LangChain文档和数据集，快速开发本地化AI原型。
+如果你有特定领域（如NLP或强化学习）需要更多资源，或需要帮助制定详细的资源使用计划，请告诉我，我可以进一步定制建议！
+
