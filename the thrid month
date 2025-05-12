@@ -1,0 +1,926 @@
+AI学习手册：第三个月（第61-90天）
+总体说明
+时长：30天，每天3小时，共90小时。
+
+目标：
+掌握大模型微调（BERT、LLaMA基础）。
+
+学习智能体框架（Rasa、LangChain）及对话系统开发。
+
+理解强化学习基础（Q-learning、DQN）。
+
+提升C++高级编程（设计模式、性能优化）。
+
+完成高级AI项目（如对话机器人、强化学习任务）。
+
+深入阅读arXiv论文并复现代码。
+
+每日结构：
+0:00-1:00 理论学习：B站、Hugging Face、Rasa文档等，学习指定章节，记录知识点。
+
+1:00-2:00 习题练习：数学推导、PyTorch/Rasa代码或C++实现（LeetCode、Hugging Face）。
+
+2:00-3:00 实践任务：Kaggle、天池、Hugging Face项目，复现论文或开发智能体。
+
+资源：B站、Hugging Face、Rasa、LangChain、Kaggle、天池、GitHub、arXiv、菜鸟教程、PyTorch、Gymnasium。
+
+强度策略：聚焦大模型和智能体实践，每周2-3个微项目（如微调BERT、Rasa机器人），每天阅读1篇arXiv论文摘要，C++与Python深度结合。
+
+详细逐日计划：第61-90天
+第61天：大模型与BERT简介
+0:00-1:00 理论学习
+资源：Hugging Face《Transformers》教程第1章（链接)
+
+内容：BERT架构、预训练任务（约30分钟）
+
+知识点总结：BERT通过掩码语言模型（MLM）和下一句预测（NSP）预训练，双向编码捕获上下文。
+
+任务：记笔记，写MLM原理。
+
+1:00-2:00 习题练习
+资源：Hugging Face BERT代码示例（链接)
+
+内容：完成5道BERT输入处理题（如tokenization）
+
+任务：用Python实现BERT tokenizer，验证输出。
+
+2:00-3:00 实践任务
+资源：Hugging Face IMDB数据集（链接)
+
+内容：用Hugging Face加载BERT模型
+
+任务：运行BERT情感分类示例，输出准确率
+
+输出：保存代码，记录准确率（目标>0.85）
+
+第62天：C++设计模式
+0:00-1:00 理论学习
+资源：菜鸟教程C++设计模式（链接)
+
+内容：单例模式、工厂模式（约30分钟）
+
+知识点总结：单例确保唯一实例，工厂模式封装对象创建。
+
+任务：记笔记，写单例模式代码框架。
+
+1:00-2:00 习题练习
+资源：LeetCode C++设计模式题（链接)
+
+内容：完成3道单例实现题
+
+任务：用C++编写代码，验证结果。
+
+2:00-3:00 实践任务
+资源：GitHub C++设计模式（链接)
+
+内容：用单例模式管理神经网络参数
+
+任务：测试参数初始化和访问
+
+输出：保存代码，记录运行结果
+
+第63天：BERT微调基础
+0:00-1:00 理论学习
+资源：Hugging Face《Transformers》教程第3章（链接)
+
+内容：微调流程、冻结层（约30分钟）
+
+知识点总结：微调更新分类头和部分层，冻结预训练权重节省计算。
+
+任务：记笔记，写微调步骤。
+
+1:00-2:00 习题练习
+资源：Hugging Face微调代码示例（链接)
+
+内容：完成5道微调参数设置题
+
+任务：用Python修改BERT分类头，验证输出。
+
+2:00-3:00 实践任务
+资源：Kaggle SST-2数据集（链接)
+
+内容：用Hugging Face微调BERT
+
+任务：训练1个epoch，输出F1分数
+
+输出：保存模型代码，记录F1（目标>0.85）
+
+第64天：强化学习与Q-learning
+0:00-1:00 理论学习
+资源：B站李宏毅《强化学习2023》第1讲（链接)
+
+内容：强化学习基础、Q-learning（约40分钟）
+
+知识点总结：Q-learning通过Q(s,a)估计回报，更新公式：Q(s,a) ← Q(s,a) + α[R + γmaxQ(s',a') - Q(s,a)]。
+
+任务：记笔记，写Q-learning公式。
+
+1:00-2:00 习题练习
+资源：Gymnasium文档（链接)
+
+内容：完成5道Q表更新计算题
+
+任务：手写Q值更新，验证结果。
+
+2:00-3:00 实践 task
+资源：Gymnasium FrozenLake环境（链接)
+
+内容：用Python实现Q-learning
+
+任务：训练1000次迭代，输出成功率
+
+输出：保存代码，记录成功率（目标>0.70）
+
+第65天：Rasa智能体简介
+0:00-1:00 理论学习
+资源：Rasa官方文档入门（链接)
+
+内容：Rasa架构、意图识别（约30分钟）
+
+知识点总结：Rasa通过NLU识别意图，DM管理对话流。
+
+任务：记笔记，写Rasa pipeline示意图。
+
+1:00-2:00 习题练习
+资源：Rasa官方教程（链接)
+
+内容：完成5道意图配置题
+
+任务：编写Rasa意图yaml文件，验证格式。
+
+2:00-3:00 实践任务
+资源：Rasa GitHub示例（链接)
+
+内容：搭建简单Rasa聊天机器人
+
+任务：配置3个意图（问候、查询、告别），测试对话
+
+输出：保存配置文件，记录对话日志
+
+第66天：C++性能优化
+0:00-1:00 理论学习
+资源：菜鸟教程C++性能优化（链接)
+
+内容：内联函数、缓存优化（约30分钟）
+
+知识点总结：内联减少函数调用开销，缓存优化提升数据访问效率。
+
+任务：记笔记，写内联函数示例。
+
+1:00-2:00 习题练习
+资源：LeetCode C++优化题（链接)
+
+内容：完成3道性能优化题（如矩阵运算）
+
+任务：用C++编写代码，验证运行时间。
+
+2:00-3:00 实践 task
+资源：GitHub C++矩阵优化（链接)
+
+内容：优化矩阵乘法性能
+
+任务：测试3x3矩阵，比较优化前后时间
+
+输出：保存代码，记录运行时间
+
+第67天：LoRA微调
+0:00-1:00 理论学习
+资源：Hugging Face LoRA教程（链接)
+
+内容：LoRA原理、低秩分解（约30分钟）
+
+知识点总结：LoRA通过低秩矩阵更新权重，降低微调成本。
+
+任务：记笔记，写LoRA公式。
+
+1:00-2:00 习题练习
+资源：Hugging Face PEFT代码示例（链接)
+
+内容：完成5道LoRA参数配置题
+
+任务：用Python设置LoRA层，验证输出。
+
+2:00-3:00 实践 task
+资源：Kaggle SST-2数据集（链接)
+
+内容：用PEFT库微调BERT（LoRA）
+
+任务：训练1个epoch，输出F1分数
+
+输出：保存模型代码，记录F1（目标>0.87）
+
+第68天：强化学习与DQN
+0:00-1:00 理论学习
+资源：B站李宏毅《强化学习2023》第2讲（链接)
+
+内容：DQN、经验回放（约40分钟）
+
+知识点总结：DQN用神经网络逼近Q值，经验回放打破数据相关性。
+
+任务：记笔记，画DQN架构图。
+
+1:00-2:00 习题练习
+资源：Gymnasium DQN教程（链接)
+
+内容：完成5道DQN更新计算题
+
+任务：手写目标网络公式，验证结果。
+
+2:00-3:00 实践 task
+资源：Gymnasium CartPole环境（链接)
+
+内容：用PyTorch实现DQN
+
+任务：训练1000次迭代，输出平均奖励
+
+输出：保存代码，记录奖励（目标>150）
+
+第69天：Rasa对话管理
+0:00-1:00 理论学习
+资源：Rasa官方文档对话管理（链接)
+
+内容：领域定义、故事文件（约30分钟）
+
+知识点总结：领域定义意图和动作，故事文件描述对话逻辑。
+
+任务：记笔记，写领域yaml示例。
+
+1:00-2:00 习题练习
+资源：Rasa官方教程（链接)
+
+内容：完成5道故事配置题
+
+任务：编写Rasa故事文件，验证格式。
+
+2:00-3:00 实践 task
+资源：Rasa GitHub示例（链接)
+
+内容：扩展第65天Rasa机器人
+
+任务：添加3个新故事（如订餐），测试对话
+
+输出：保存配置文件，记录对话日志
+
+第70天：Kaggle文本分类优化
+0:00-1:00 理论学习
+资源：Kaggle NLP进阶教程（链接)
+
+内容：预训练模型、微调技巧（约30分钟）
+
+知识点总结：预训练模型提供通用特征，微调适配特定任务。
+
+任务：记笔记，写微调注意事项。
+
+1:00-2:00 习题练习
+资源：Kaggle NLP练习（链接)
+
+内容：完成5道微调参数优化题
+
+任务：手写学习率调整代码，验证结果。
+
+2:00-3:00 实践 task
+资源：Kaggle SST-2数据集（链接)
+
+内容：优化第63天BERT模型
+
+任务：调整学习率，输出F1分数
+
+输出：保存代码，记录F1（目标>0.88）
+
+第71天：C++内存管理优化
+0:00-1:00 理论学习
+资源：菜鸟教程C++内存管理（链接)
+
+内容：内存池、RAII（约30分钟）
+
+知识点总结：内存池减少分配开销，RAII自动管理资源。
+
+任务：记笔记，写RAII类示例。
+
+1:00-2:00 习题练习
+资源：LeetCode C++内存题（链接)
+
+内容：完成3道内存管理题（如动态数组）
+
+任务：用C++编写代码，验证结果。
+
+2:00-3:00 实践 task
+资源：GitHub C++神经网络（链接)
+
+内容：用RAII管理神经网络内存
+
+任务：测试权重分配和释放
+
+输出：保存代码，记录运行结果
+
+第72天：LangChain智能体简介
+0:00-1:00 理论学习
+资源：LangChain官方文档入门（链接)
+
+内容：LangChain架构、工具调用（约30分钟）
+
+知识点总结：LangChain整合LLM和外部工具，支持复杂任务。
+
+任务：记笔记，画LangChain流程图。
+
+1:00-2:00 习题练习
+资源：LangChain官方教程（链接)
+
+内容：完成5道链配置题
+
+任务：编写LangChain提示模板，验证格式。
+
+2:00-3:00 实践 task
+资源：LangChain GitHub示例（链接)
+
+内容：搭建简单LangChain智能体
+
+任务：实现问答链，测试3个问题
+
+输出：保存代码，记录回答日志
+
+第73天：强化学习与策略梯度
+0:00-1:00 理论学习
+资源：B站李宏毅《强化学习2023》第3讲（链接)
+
+内容：策略梯度、REINFORCE（约40分钟）
+
+知识点总结：策略梯度直接优化策略π(a|s)，REINFORCE用回报加权梯度。
+
+任务：记笔记，写REINFORCE公式。
+
+1:00-2:00 习题练习
+资源：Gymnasium策略梯度教程（链接)
+
+内容：完成5道策略梯度计算题
+
+任务：手写策略更新公式，验证结果。
+
+2:00-3:00 实践 task
+资源：Gymnasium CartPole环境（链接)
+
+内容：用PyTorch实现REINFORCE
+
+任务：训练1000次迭代，输出平均奖励
+
+输出：保存代码，记录奖励（目标>180）
+
+第74天：天池对话系统项目
+0:00-1:00 理论学习
+资源：天池NLP教程（链接)
+
+内容：对话系统设计、评估指标（约30分钟）
+
+知识点总结：BLEU评估生成质量，意图准确率衡量NLU性能。
+
+任务：记笔记，写BLEU公式。
+
+1:00-2:00 习题练习
+资源：天池对话练习（链接)
+
+内容：完成5道意图识别题
+
+任务：手写意图分类代码，验证结果。
+
+2:00-3:00 实践 task
+资源：天池对话竞赛（链接)
+
+内容：用Rasa开发客服机器人
+
+任务：配置5个意图，提交测试结果
+
+输出：保存代码，记录排名
+
+第75天：C++并发编程
+0:00-1:00 理论学习
+资源：菜鸟教程C++并发（链接)
+
+内容：async、future（约30分钟）
+
+知识点总结：async异步执行任务，future获取结果。
+
+任务：记笔记，写async示例。
+
+1:00-2:00 习题练习
+资源：LeetCode C++并发题（链接)
+
+内容：完成3道异步任务题
+
+任务：用C++编写代码，验证结果。
+
+2:00-3:00 实践 task
+资源：GitHub C++并发（链接)
+
+内容：用async加速神经网络推理
+
+任务：测试前向传播时间
+
+输出：保存代码，记录运行时间
+
+第76天：BERT进阶微调
+0:00-1:00 理论学习
+资源：Hugging Face《Transformers》教程第4章（链接)
+
+内容：超参数调优、梯度累积（约30分钟）
+
+知识点总结：梯度累积模拟大批量，学习率调度优化收敛。
+
+任务：记笔记，写梯度累积原理。
+
+1:00-2:00 习题练习
+资源：Hugging Face微调代码示例（链接)
+
+内容：完成5道超参数调整题
+
+任务：用Python设置调度器，验证输出。
+
+2:00-3:00 实践 task
+资源：Kaggle SST-2数据集（链接)
+
+内容：优化第67天LoRA微调
+
+任务：加梯度累积，输出F1分数
+
+输出：保存代码，记录F1（目标>0.89）
+
+第77天：LangChain工具集成
+0:00-1:00 理论学习
+资源：LangChain工具文档（链接)
+
+内容：工具调用、外部API（约30分钟）
+
+知识点总结：工具调用扩展LLM功能，API集成实现动态交互。
+
+任务：记笔记，写工具调用流程。
+
+1:00-2:00 习题练习
+资源：LangChain工具教程（链接)
+
+内容：完成5道工具配置题
+
+任务：编写工具调用代码，验证格式。
+
+2:00-3:00 实践 task
+资源：LangChain GitHub示例（链接)
+
+内容：扩展第72天LangChain智能体
+
+任务：集成搜索工具，测试查询
+
+输出：保存代码，记录回答日志
+
+第78天：强化学习与PPO
+0:00-1:00 理论学习
+资源：B站李宏毅《强化学习2023》第4讲（链接)
+
+内容：PPO、裁剪目标（约40分钟）
+
+知识点总结：PPO通过裁剪目标平衡探索和利用，稳定训练。
+
+任务：记笔记，写PPO目标函数。
+
+1:00-2:00 习题练习
+资源：Gymnasium PPO教程（链接)
+
+内容：完成5道PPO更新计算题
+
+任务：手写裁剪公式，验证结果。
+
+2:00-3:00 实践 task
+资源：Gymnasium Pendulum环境（链接)
+
+内容：用PyTorch实现PPO
+
+任务：训练1000次迭代，输出平均奖励
+
+输出：保存代码，记录奖励（目标>-200）
+
+第79天：arXiv大模型论文复现
+0:00-1:00 理论学习
+资源：arXiv大模型论文（链接)
+
+内容：阅读1篇BERT优化论文摘要及方法（约30分钟）
+
+知识点总结：记录论文提出的微调技巧（如混合精度）。
+
+任务：记笔记，写方法总结。
+
+1:00-2:00 习题练习
+资源：GitHub大模型代码（链接)
+
+内容：分析论文代码结构
+
+任务：写代码注释，理解实现。
+
+2:00-3:00 实践 task
+资源：Hugging Face IMDB数据集（链接)
+
+内容：复现论文中的BERT优化
+
+任务：训练模型，输出F1分数
+
+输出：保存代码，记录F1（目标>0.87）
+
+第80天：C++单元测试
+0:00-1:00 理论学习
+资源：菜鸟教程C++测试（链接)
+
+内容：Google Test、单元测试（约30分钟）
+
+知识点总结：单元测试验证代码正确性，Google Test提供断言和mock。
+
+任务：记笔记，写测试用例示例。
+
+1:00-2:00 习题练习
+资源：LeetCode C++测试题（链接)
+
+内容：完成3道单元测试题
+
+任务：用Google Test编写测试，验证结果。
+
+2:00-3:00 实践 task
+资源：GitHub C++测试（链接)
+
+内容：为神经网络类添加单元测试
+
+任务：测试前向传播功能
+
+输出：保存测试代码，记录通过率
+
+第81天：Rasa进阶开发
+0:00-1:00 理论学习
+资源：Rasa动作文档（链接)
+
+内容：自定义动作、API集成（约30分钟）
+
+知识点总结：自定义动作执行复杂逻辑，API集成扩展功能。
+
+任务：记笔记，写动作定义示例。
+
+1:00-2:00 习题练习
+资源：Rasa动作教程（链接)
+
+内容：完成5道动作配置题
+
+任务：编写动作代码，验证格式。
+
+2:00-3:00 实践 task
+资源：Rasa GitHub示例（链接)
+
+内容：扩展第69天Rasa机器人
+
+任务：添加天气查询动作，测试对话
+
+输出：保存代码，记录对话日志
+
+第82天：LangChain记忆功能
+0:00-1:00 理论学习
+资源：LangChain记忆文档（链接)
+
+内容：对话记忆、上下文管理（约30分钟）
+
+知识点总结：记忆模块保存对话历史，上下文管理提升连贯性。
+
+任务：记笔记，写记忆模块示意图。
+
+1:00-2:00 习题练习
+资源：LangChain记忆教程（链接)
+
+内容：完成5道记忆配置题
+
+任务：编写记忆代码，验证格式。
+
+2:00-3:00 实践 task
+资源：LangChain GitHub示例（链接)
+
+内容：扩展第77天LangChain智能体
+
+任务：添加对话记忆，测试多轮对话
+
+输出：保存代码，记录对话日志
+
+第83天：天池强化学习项目
+0:00-1:00 理论学习
+资源：天池强化学习教程（链接)
+
+内容：环境建模、奖励设计（约30分钟）
+
+知识点总结：环境定义状态和动作，奖励引导策略优化。
+
+任务：记笔记，写奖励函数示例。
+
+1:00-2:00 习题练习
+资源：天池强化学习练习（链接)
+
+内容：完成5道环境配置题
+
+任务：手写环境代码，验证结果。
+
+2:00-3:00 实践 task
+资源：天池强化学习竞赛（链接)
+
+内容：用DQN解决任务
+
+任务：训练模型，提交结果
+
+输出：保存代码，记录排名
+
+第84天：C++并行计算
+0:00-1:00 理论学习
+资源：菜鸟教程C++并行（链接)
+
+内容：OpenMP、并行循环（约30分钟）
+
+知识点总结：OpenMP简化并行编程，pragma parallel并行化循环。
+
+任务：记笔记，写OpenMP示例。
+
+1:00-2:00 习题练习
+资源：LeetCode C++并行题（链接)
+
+内容：完成3道并行计算题
+
+任务：用C++编写代码，验证结果。
+
+2:00-3:00 实践 task
+资源：GitHub C++并行（链接)
+
+内容：用OpenMP加速矩阵乘法
+
+任务：测试4x4矩阵，比较时间
+
+输出：保存代码，记录运行时间
+
+第85天：大模型量化
+0:00-1:00 理论学习
+资源：Hugging Face量化教程（链接)
+
+内容：模型量化、INT8（约30分钟）
+
+知识点总结：量化将浮点转为低精度，INT8降低内存和计算需求。
+
+任务：记笔记，写量化原理。
+
+1:00-2:00 习题练习
+资源：Hugging Face量化代码示例（链接)
+
+内容：完成5道量化配置题
+
+任务：用Python设置量化参数，验证输出。
+
+2:00-3:00 实践 task
+资源：Hugging Face IMDB数据集（链接)
+
+内容：用Hugging Face量化BERT
+
+任务：测试量化模型，输出F1分数
+
+输出：保存代码，记录F1（目标>0.85）
+
+第86天：强化学习环境定制
+0:00-1:00 理论学习
+资源：Gymnasium自定义环境文档（链接)
+
+内容：自定义环境、状态设计（约30分钟）
+
+知识点总结：自定义环境需定义状态、动作和奖励函数。
+
+任务：记笔记，写环境类结构。
+
+1:00-2:00 习题练习
+资源：Gymnasium自定义教程（链接)
+
+内容：完成5道环境配置题
+
+任务：手写环境代码，验证格式。
+
+2:00-3:00 实践 task
+资源：Gymnasium GitHub示例（链接)
+
+内容：实现简单迷宫环境
+
+任务：用Q-learning训练，输出成功率
+
+输出：保存代码，记录成功率（目标>0.60）
+
+第87天：Rasa与BERT集成
+0:00-1:00 理论学习
+资源：Rasa高级文档（链接)
+
+内容：预训练模型集成、BERT-NLU（约30分钟）
+
+知识点总结：BERT增强Rasa NLU，提升意图识别准确率。
+
+任务：记笔记，写BERT-NLU配置。
+
+1:00-2:00 习题练习
+资源：Rasa高级教程（链接)
+
+内容：完成5道BERT-NLU配置题
+
+任务：编写Rasa pipeline，验证格式。
+
+2:00-3:00 实践 task
+资源：Rasa GitHub示例（链接)
+
+内容：在第81天机器人中集成BERT
+
+任务：测试意图识别，输出准确率
+
+输出：保存代码，记录准确率（目标>0.90）
+
+第88天：LangChain多模态
+0:00-1:00 理论学习
+资源：LangChain多模态文档（链接)
+
+内容：多模态输入、图像处理（约30分钟）
+
+知识点总结：多模态结合文本和图像，提升任务灵活性。
+
+任务：记笔记，写多模态流程。
+
+1:00-2:00 习题练习
+资源：LangChain多模态教程（链接)
+
+内容：完成5道多模态配置题
+
+任务：编写图像处理代码，验证格式。
+
+2:00-3:00 实践 task
+资源：LangChain GitHub示例（链接)
+
+内容：扩展第82天智能体
+
+任务：添加图像描述功能，测试输出
+
+输出：保存代码，记录描述结果
+
+第89天：arXiv强化学习论文复现
+0:00-1:00 理论学习
+资源：arXiv强化学习论文（链接)
+
+内容：阅读1篇DQN优化论文摘要及方法（约30分钟）
+
+知识点总结：记录论文提出的改进（如双DQN）。
+
+任务：记笔记，写方法总结。
+
+1:00-2:00 习题练习
+资源：GitHub强化学习代码（链接)
+
+内容：分析论文代码结构
+
+任务：写代码注释，理解实现。
+
+2:00-3:00 实践 task
+资源：Gymnasium CartPole环境（链接)
+
+内容：复现论文中的DQN优化
+
+任务：训练模型，输出平均奖励
+
+输出：保存代码，记录奖励（目标>180）
+
+第90天：第三月总结与项目整合
+0:00-1:00 理论学习
+资源：Hugging Face总结教程（链接)
+
+内容：复习大模型、强化学习、智能体（约30分钟）
+
+知识点总结：微调优化任务性能，强化学习解决动态决策，智能体实现交互。
+
+任务：记笔记，写技术对比表。
+
+1:00-2:00 习题练习
+资源：Kaggle模型评估练习（链接)
+
+内容：完成5道综合评估题
+
+任务：手写指标计算，验证答案。
+
+2:00-3:00 实践 task
+资源：天池对话竞赛（链接)
+
+内容：优化第74天Rasa机器人
+
+任务：集成BERT和自定义动作，提交结果
+
+输出：保存代码，记录排名提升
+
+所有资源链接
+以下是第三个月使用的所有免费资源链接，确保国内可访问：
+B站课程：
+李宏毅强化学习2023：https://www.bilibili.com/video/BV1vM411H7Tj
+
+Hugging Face：
+Transformers快速入门：https://huggingface.co/docs/transformers/quicktour
+
+BERT模型：https://huggingface.co/docs/transformers/model_doc/bert
+
+微调教程：https://huggingface.co/docs/transformers/training
+
+序列分类示例：https://huggingface.co/docs/transformers/tasks/sequence_classification
+
+LoRA教程：https://huggingface.co/docs/peft/conceptual_guides/lora
+
+PEFT快速入门：https://huggingface.co/docs/peft/quicktour
+
+量化教程：https://huggingface.co/docs/transformers/quantization
+
+IMDB数据集：https://huggingface.co/datasets/imdb
+
+训练器总结：https://huggingface.co/docs/transformers/main_classes/trainer
+
+Rasa：
+官方文档：https://rasa.com/docs/rasa/
+
+安装教程：https://rasa.com/docs/rasa/installation
+
+领域文档：https://rasa.com/docs/rasa/domain
+
+故事文档：https://rasa.com/docs/rasa/stories
+
+自定义动作：https://rasa.com/docs/rasa/custom-actions
+
+高级pipeline：https://rasa.com/docs/rasa/pipeline-configurations
+
+GitHub示例：https://github.com/RasaHQ/rasa
+
+LangChain：
+入门文档：https://python.langchain.com/docs/get_started/introduction
+
+快速入门：https://python.langchain.com/docs/get_started/quickstart
+
+工具集成：https://python.langchain.com/docs/integrations/tools
+
+记忆模块：https://python.langchain.com/docs/modules/memory
+
+多模态文档：https://python.langchain.com/docs/integrations/multimodal
+
+GitHub示例：https://github.com/langchain-ai/langchain
+
+Gymnasium：
+官方文档：https://gymnasium.farama.org/
+
+FrozenLake环境：https://gymnasium.farama.org/environments/toy_text/frozen_lake/
+
+CartPole环境：https://gymnasium.farama.org/environments/classic_control/cart_pole/
+
+Pendulum环境：https://gymnasium.farama.org/environments/classic_control/pendulum/
+
+自定义环境：https://gymnasium.farama.org/tutorials/implementing_custom_environments/
+
+教程：https://gymnasium.farama.org/tutorials/
+
+GitHub示例：https://github.com/Farama-Foundation/Gymnasium
+
+Kaggle：
+NLP进阶：https://www.kaggle.com/learn/natural-language-processing
+
+模型评估：https://www.kaggle.com/learn/intermediate-machine-learning
+
+SST-2数据集：https://www.kaggle.com/datasets/whenamancodes/sentiment-analysis-dataset
+
+天池：
+NLP教程：https://tianchi.aliyun.com/learn
+
+强化学习教程：https://tianchi.aliyun.com/learn
+
+竞赛：https://tianchi.aliyun.com/competition
+
+菜鸟教程：
+C++设计模式：https://www.runoob.com/design-pattern/design-pattern-tutorial.html
+
+C++性能优化：https://www.runoob.com/cplusplus/cpp-optimizations.html
+
+C++内存管理：https://www.runoob.com/cplusplus/cpp-memory-management.html
+
+C++并发：https://www.runoob.com/cplusplus/cpp-multithreading.html
+
+C++并行：https://www.runoob.com/cplusplus/cpp-parallel.html
+
+C++单元测试：https://www.runoob.com/cplusplus/cpp-unit-testing.html
+
+GitHub：
+设计模式：https://github.com/topics/design-patterns
+
+矩阵优化：https://github.com/topics/matrix
+
+神经网络：https://github.com/topics/neural-network
+
+并发计算：https://github.com/topics/parallel-computing
+
+单元测试：https://github.com/topics/unit-testing
+
+强化学习代码：https://github.com/topics/reinforcement-learning
+
+BERT代码：https://github.com/topics/bert
+
+个人仓库：https://github.com/
+
+arXiv：
+大模型论文：https://arxiv.org/list/cs.LG/recent
+
+LeetCode：
+C++题目：https://leetcode.cn/problems/
+
