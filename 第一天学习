@@ -1,0 +1,137 @@
+第一天学习计划
+目标：理解线性回归原理，掌握梯度下降优化，初步使用Python处理数据。
+
+时间分配：3小时（1小时理论 + 1小时习题 + 1小时实践）。
+
+资源：免费，国内可访问（如B站、Kaggle、菜鸟教程）。
+
+0:00-1:00 理论学习
+资源：B站吴恩达《机器学习》课程第1讲（链接)  
+观看约30分钟，聚焦线性回归和代价函数。
+
+内容：
+线性回归模型：y=wX+by = wX + by = wX + b
+，目标是最小化均方误差。
+
+代价函数：J(w,b)=12m∑i=1m(hw(x(i))−y(i))2J(w,b) = \frac{1}{2m} \sum_{i=1}^m (h_w(x^{(i)}) - y^{(i)})^2J(w,b) = \frac{1}{2m} \sum_{i=1}^m (h_w(x^{(i)}) - y^{(i)})^2
+。
+
+梯度下降：w:=w−α∂J∂ww := w - \alpha \frac{\partial J}{\partial w}w := w - \alpha \frac{\partial J}{\partial w}
+。
+
+任务：
+记笔记，写出线性回归公式和梯度下降更新规则。
+
+总结知识点：线性回归通过最小化代价函数拟合数据，梯度下降迭代优化参数。
+
+工具：笔记本或Notion记录笔记，推荐画出代价函数的3D图（手绘或用Desmos：https://www.desmos.com/)。
+
+1:00-2:00 习题练习
+资源：Kaggle《Intro to Machine Learning》练习（链接)  
+完成线性回归相关练习（约5道题）。
+
+内容：
+手动推导梯度下降的偏导数：∂J∂w\frac{\partial J}{\partial w}\frac{\partial J}{\partial w}
+ 和 ∂J∂b\frac{\partial J}{\partial b}\frac{\partial J}{\partial b}
+。
+
+编写Python代码实现单变量梯度下降。
+
+任务：
+推导：计算( J(w,b) ) 对 ( w ) 和 ( b ) 的偏导数，验证公式。
+
+代码：用NumPy实现梯度下降，优化简单数据集（如 y=2x+1y = 2x + 1y = 2x + 1
+ 加噪声）。
+
+示例代码框架：
+python
+
+import numpy as np
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([2.1, 4.2, 6.1, 8.0, 10.2])
+w, b = 0, 0
+alpha = 0.01
+for _ in range(1000):
+    grad_w = (1/len(X)) * np.sum((w*X + b - y) * X)
+    grad_b = (1/len(X)) * np.sum(w*X + b - y)
+    w -= alpha * grad_w
+    b -= alpha * grad_b
+print(f"w: {w}, b: {b}")
+
+输出：保存推导笔记和代码，验证 w≈2w \approx 2w \approx 2
+，b≈1b \approx 1b \approx 1
+。
+
+2:00-3:00 实践任务
+资源：Kaggle波士顿房价数据集（链接)  
+下载数据集，包含房屋特征和价格。
+
+内容：
+用Scikit-learn实现线性回归，预测房价。
+
+评估模型性能（均方误差MSE）。
+
+任务：
+加载数据集，分割训练/测试集（80/20）。
+
+训练线性回归模型，输出MSE。
+
+示例代码：
+python
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import pandas as pd
+data = pd.read_csv("boston_housing.csv")
+X = data.drop("Price", axis=1)
+y = data["Price"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+print(f"MSE: {mse}")
+
+输出：保存代码，记录MSE（目标：<50），上传到GitHub个人仓库（https://github.com/)。
+
+启动第一天的具体步骤
+准备环境（10分钟）：
+硬件：电脑（最低4GB内存，推荐GPU但非必需）。
+
+软件：
+安装Python 3.8+（https://www.python.org/）。
+
+安装Jupyter Notebook：pip install jupyter。
+
+安装库：pip install numpy pandas scikit-learn。
+
+可选：注册Google Colab（https://colab.research.google.com/）运行代码，免费GPU。
+
+GitHub：创建仓库（如“AI-120-Days”），记录每天代码。
+
+笔记工具：Notion、Obsidian或纸质笔记本，用于记录理论和总结。
+
+时间管理（5分钟）：
+选择专注时间段（如晚上7:00-10:00）。
+
+使用番茄钟（25分钟学习+5分钟休息），保持高效。
+
+关闭手机通知，避免分心。
+
+执行学习（3小时）：
+理论学习：打开B站视频，边看边记笔记，暂停推导公式。
+
+习题练习：用Jupyter Notebook写代码，手写推导保存到笔记。
+
+实践任务：下载Kaggle数据集，运行代码，调试直到MSE达标。
+
+记录成果：将笔记、代码、输出（MSE值）整理到GitHub，写简要总结（如“第一天：线性回归MSE=45.2”）。
+
+总结与反馈（10分钟）：
+回顾：理论是否清晰？代码是否运行成功？MSE是否达标？
+
+记录问题：如推导不理解、代码报错，准备第二天问我。
+
+上传GitHub：确保代码和总结可公开（便于未来展示）。
+
